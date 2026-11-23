@@ -1,4 +1,4 @@
-# Eco-Friendly Shopping — Updated project
+# Eco-Friendly Shopping 
 
 This project is a demo eco-friendly shop with a pre-loved marketplace. The updated files improve the marketplace listing search and the empty-state message.
 
