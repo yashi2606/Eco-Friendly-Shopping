@@ -7,7 +7,7 @@ Buy new eco-friendly products, and sell your old items too (pre-loved marketplac
 
 ```bash
 cd backend
-npm install
+npm install 
 # open backend/.env and set UPI_ID to your real UPI ID
 npm start
 ```
