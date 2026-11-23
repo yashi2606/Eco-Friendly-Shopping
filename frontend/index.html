@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Eco-Conscious – buy, sell, reuse</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#EDF2EE;--surface:#fff;--ink:#12241A;--mute:#4B6355;--line:#CBD8CF;--btn:#2E7D4F;--btn-ink:#fff;--a:#2E7D4F;--b:#5F8F1F;--c:#A8680F;--sky:#2B6F8E;--hero:#17402B;--hero-ink:#EAF5EE;--hero-mute:#A9CDB6;--shadow:0 1px 0 rgba(18,36,26,.06);color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1A14;--surface:#16251C;--ink:#E6F0E9;--mute:#9DB4A5;--line:#294234;--btn:#5CC083;--btn-ink:#0F1A14;--a:#5CC083;--b:#9BC95A;--c:#E0A24A;--sky:#6BB6D6;--hero:#0A2217;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0F1A14;--surface:#16251C;--ink:#E6F0E9;--mute:#9DB4A5;--line:#294234;--btn:#5CC083;--btn-ink:#0F1A14;--a:#5CC083;--b:#9BC95A;--c:#E0A24A;--sky:#6BB6D6;--hero:#0A2217;color-scheme:dark}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 Figtree,system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque",Figtree,system-ui,sans-serif;line-height:1.1;margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:30}
+.bar{display:flex;align-items:center;gap:16px;min-height:60px}
+.logo{font:800 20px "Bricolage Grotesque",sans-serif;text-decoration:none;color:var(--ink);margin-right:auto}
+nav{white-space:nowrap}
+nav a{color:var(--mute);text-decoration:none;margin-right:14px;font-weight:600}
+nav a:hover{color:var(--ink)}
+.btn{background:var(--btn);color:var(--btn-ink);border:0;border-radius:999px;padding:10px 18px;font-weight:600;text-decoration:none;display:inline-block;text-align:center}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn.sm{padding:6px 12px;font-size:13px}
+.btn:active{transform:scale(.97)}
+.hero{background:var(--hero);color:var(--hero-ink);padding:56px 0 48px}
+.hero .wrap{display:grid;grid-template-columns:1.25fr 1fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(34px,5.6vw,60px);font-weight:800;letter-spacing:-.02em}
+.hero p{color:var(--hero-mute);max-width:46ch;margin:16px 0 22px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1.5px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 14px;font-weight:600;font-size:14px}
+.chip[aria-pressed="true"]{background:var(--btn);color:var(--btn-ink);border-color:var(--btn)}
+.hero .chip{background:transparent;color:var(--hero-ink);border-color:#3f6b51}
+.hero .chip[aria-pressed="true"]{background:#CFEBD9;color:#0E2B1C;border-color:#CFEBD9}
+.hero .lbl{font-weight:600;margin-bottom:10px;color:var(--hero-ink)}
+.hero .cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.hero .btn.ghost{color:var(--hero-ink);border-color:#3f6b51}
+.demo{background:var(--surface);color:var(--ink);border-radius:20px;padding:26px 22px 20px;position:relative;transform:rotate(2deg);max-width:320px;justify-self:center;width:100%}
+.demo::before,.card::before{content:"";position:absolute;top:10px;left:50%;width:12px;height:12px;margin-left:-6px;border-radius:50%;background:var(--bg);box-shadow:inset 0 0 0 2px var(--line)}
+.demo .big{display:flex;align-items:center;gap:14px;margin-top:10px}
+.demo h3{font-size:22px}
+.bars{display:grid;gap:9px;margin:16px 0 0}
+.bar-row{display:grid;grid-template-columns:86px 1fr 28px;gap:8px;align-items:center;font-size:13px;color:var(--mute)}
+.track{height:8px;border-radius:9px;background:var(--line);overflow:hidden}
+.fill{height:100%;border-radius:9px;background:var(--a)}
+.ring{display:block}.ring .trk{fill:none;stroke:var(--line);stroke-width:4}.ring .arc{fill:none;stroke-width:4;stroke-linecap:round}
+.ring text{font:800 13px "Bricolage Grotesque",sans-serif;fill:var(--ink)}
+.g-a .arc{stroke:var(--a)}.g-b .arc{stroke:var(--b)}.g-c .arc{stroke:var(--c)}
+section{padding:44px 0}
+.alt{background:color-mix(in srgb,var(--surface) 55%,var(--bg))}
+.head{display:flex;flex-wrap:wrap;gap:12px;align-items:end;justify-content:space-between;margin-bottom:20px}
+.head h2{font-size:clamp(26px,3.6vw,38px);font-weight:800}
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+select,input,textarea{font:inherit;background:var(--surface);color:var(--ink);border:1.5px solid var(--line);border-radius:12px;padding:9px 12px;width:100%}
+.tools select,.tools input{width:auto;border-radius:999px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px}
+.card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:30px 16px 16px;display:flex;flex-direction:column;gap:8px;box-shadow:var(--shadow)}
+.card .ico{height:96px;border-radius:12px;display:grid;place-items:center;font-size:46px;background:var(--bg);cursor:pointer;border:0;overflow:hidden;padding:0}
+.card .ico img,.pimg{width:100%;height:100%;object-fit:cover;display:block}
+.card .pic{height:120px;border-radius:12px;display:grid;place-items:center;font-size:50px;background:var(--bg);overflow:hidden}
+.card h3{font-size:18px;font-weight:600;overflow-wrap:anywhere}
+.meta{display:flex;justify-content:space-between;align-items:center}
+.price{font-weight:600}
+.match{font-size:12px;font-weight:600;color:var(--sky)}
+.cat{font-size:13px;color:var(--mute);overflow-wrap:anywhere}
+.badge{font-size:12px;font-weight:600;color:var(--a);background:var(--bg);border-radius:999px;padding:2px 10px;align-self:flex-start}
+.add{margin-top:auto}
+.empty{grid-column:1/-1;color:var(--mute)}
+.sellbox{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:26px;display:grid;grid-template-columns:1fr 1fr;gap:16px 24px}
+.sellbox label{display:block;font-weight:600;margin-bottom:5px;font-size:14px}
+.full{grid-column:1/-1}
+.preview{width:120px;height:120px;border-radius:12px;object-fit:cover;margin-top:8px;border:1px solid var(--line)}
+.rule{font-size:13px;color:var(--mute);background:var(--bg);border-radius:12px;padding:10px 12px}
+.chk{display:flex;gap:10px;align-items:flex-start;font-size:14px}
+.chk input{width:auto;margin-top:4px}
+.profile{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:26px;display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.profile label{display:block;font-weight:600;margin-bottom:6px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat{background:var(--bg);border-radius:14px;padding:14px}
+.stat b{display:block;font:800 30px "Bricolage Grotesque",sans-serif}
+.stat span{font-size:13px;color:var(--mute)}
+.mine{margin-top:22px;grid-column:1/-1}
+.mrow{display:flex;gap:10px;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding:10px 0;flex-wrap:wrap}
+.mrow .st{font-size:12px;font-weight:600;border-radius:999px;padding:2px 10px;background:var(--bg)}
+dialog{border:0;border-radius:20px;padding:24px;max-width:420px;width:calc(100% - 32px);background:var(--surface);color:var(--ink)}
+dialog::backdrop{background:rgba(5,15,10,.55)}
+.pay{text-align:center}
+.amt{font:800 40px "Bricolage Grotesque",sans-serif;margin:6px 0 12px}
+.qrbox{background:#fff;padding:14px;border-radius:16px;display:inline-block;border:1px solid var(--line)}
+.qrbox img,.qrbox canvas{display:block}
+.pay .row{display:grid;gap:8px;margin-top:14px}
+.ok{font-size:56px}
+@media (hover:hover) and (pointer:fine){.upi-open{display:none!important}}
+aside{position:fixed;top:0;right:0;bottom:0;width:min(400px,100%);background:var(--surface);border-left:1px solid var(--line);z-index:40;transform:translateX(105%);transition:transform .25s;display:flex;flex-direction:column;padding:calc(env(safe-area-inset-top,0px) + 18px) 18px calc(env(safe-area-inset-bottom,0px) + 18px)}
+aside.open{transform:none}
+.items{flex:1;overflow:auto;display:grid;align-content:start;gap:10px;margin:14px 0}
+.line{display:grid;grid-template-columns:40px 1fr auto;gap:10px;align-items:center;font-size:14px}
+.line .e{font-size:26px}
+.qty button{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--line);background:transparent;line-height:1}
+.swap{background:var(--bg);border-radius:12px;padding:10px 12px;font-size:13px;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.sum{border-top:1px solid var(--line);padding-top:12px;display:grid;gap:4px;font-size:14px}
+.toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 20px);transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:999px;z-index:50;opacity:0;pointer-events:none;transition:opacity .2s;font-weight:600;max-width:90%;text-align:center}
+.toast.show{opacity:1}
+footer{padding:30px 0 40px;color:var(--mute);font-size:14px;border-top:1px solid var(--line)}
+@media (max-width:760px){.hero .wrap,.profile,.sellbox{grid-template-columns:1fr}.demo{transform:none}.bar{flex-wrap:wrap;padding:8px 0;gap:6px 12px}nav{order:3;width:100%;overflow-x:auto}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header><div class="wrap bar">
+  <a class="logo" href="#top">🌍 Eco-Conscious</a>
+  <button class="btn ghost" id="cartBtn" aria-label="Open cart">Cart (<span id="cc">0</span>)</button>
+  <nav><a href="#shop">Shop</a><a href="#preloved">Pre-loved</a><a href="#sell">Sell</a><a href="#profile">My profile</a></nav>
+</div></header>
+
+<main id="top">
+<div class="hero"><div class="wrap">
+  <div>
+    <h1>Buy better. Sell what you don’t use.</h1>
+    <p>Shop new eco-friendly products with an eco-score, or give your unused things a second life and earn from them. Reusing is the greenest choice of all.</p>
+    <div class="lbl" id="goalLbl">What matters most to you?</div>
+    <div class="chips" id="goals" role="group" aria-labelledby="goalLbl"></div>
+    <div class="cta"><a class="btn" href="#sell">Sell an item</a><a class="btn ghost" href="#preloved">Browse pre-loved</a></div>
+  </div>
+  <div class="demo" aria-label="Example eco-score tag">
+    <div class="cat">How a score reads</div>
+    <div class="big"><svg class="ring g-a" viewBox="0 0 44 44" width="64" height="64"><circle class="trk" cx="22" cy="22" r="18"/><circle class="arc" cx="22" cy="22" r="18" stroke-dasharray="104 113" transform="rotate(-90 22 22)"/><text x="22" y="26" text-anchor="middle">92</text></svg><h3>Bamboo toothbrush</h3></div>
+    <div class="bars">
+      <div class="bar-row">Materials<div class="track"><div class="fill" style="width:96%"></div></div>96</div>
+      <div class="bar-row">Packaging<div class="track"><div class="fill" style="width:90%"></div></div>90</div>
+      <div class="bar-row">Carbon<div class="track"><div class="fill" style="width:88%"></div></div>88</div>
+    </div>
+  </div>
+</div></div>
+
+<section id="shop"><div class="wrap">
+  <div class="head">
+    <h2>Shop new eco products</h2>
+    <div class="tools">
+      <div class="chips" id="cats" role="group" aria-label="Category"></div>
+      <label class="cat" for="sort">Sort</label>
+      <select id="sort"><option value="match">Best match</option><option value="score">Eco-score</option><option value="low">Price: low to high</option></select>
+    </div>
+  </div>
+  <div class="grid" id="grid"></div>
+</div></section>
+
+<section id="preloved" class="alt"><div class="wrap">
+  <div class="head">
+    <h2>Pre-loved marketplace</h2>
+    <div class="tools">
+      <input id="q" type="search" placeholder="Search pre-loved items" aria-label="Search pre-loved items">
+      <div class="chips" id="pcats" role="group" aria-label="Pre-loved category"></div>
+    </div>
+  </div>
+  <div class="grid" id="pgrid"></div>
+</div></section>
+
+<section id="sell"><div class="wrap">
+  <div class="head"><h2>Sell your pre-loved items</h2></div>
+  <form class="sellbox" id="sellForm" novalidate>
+    <div class="full rule">Only list things you own and no longer use, like books, kitchenware, home items, clothes, bags and gadgets. Not allowed: weapons, alcohol, tobacco, medicines, food, and stolen or fake goods. Buyers pay you directly by UPI.</div>
+    <div class="full"><label for="lt">What are you selling?</label><input id="lt" name="lt" maxlength="60" required placeholder="e.g. Steel water bottle, used 3 months"></div>
+    <div><label for="lc">Category</label><select id="lc" name="lc" required></select></div>
+    <div><label for="lcond">Condition</label><select id="lcond" name="lcond"><option value="like">Like new</option><option value="good" selected>Good</option><option value="fair">Fair</option></select></div>
+    <div><label for="lp">Price (₹)</label><input id="lp" name="lp" type="number" min="1" max="100000" step="1" required inputmode="numeric"></div>
+    <div><label for="ls">Your name</label><input id="ls" name="ls" maxlength="40" required autocomplete="given-name"></div>
+    <div class="full"><label for="lu">Your UPI ID (where you receive money)</label><input id="lu" name="lu" required placeholder="name@upi" autocomplete="off"></div>
+    <div class="full"><label for="ld">Details</label><textarea id="ld" name="ld" rows="3" maxlength="300" placeholder="Age of the item, any marks, what is included"></textarea></div>
+    <div class="full"><label for="photo">Photo (optional)</label><input id="photo" type="file" accept="image/*"><img id="prev" class="preview" alt="Selected photo preview" hidden></div>
+    <label class="full chk"><input type="checkbox" id="lok" name="lok"><span>I confirm this item is mine, legal to sell, and described honestly.</span></label>
+    <div class="full"><button class="btn" type="submit">List my item</button></div>
+  </form>
+</div></section>
+
+<section id="profile" class="alt"><div class="wrap">
+  <div class="head"><h2>My profile</h2></div>
+  <div class="profile">
+    <div>
+      <label for="name">Your name</label>
+      <input id="name" placeholder="e.g. Aarav" autocomplete="given-name">
+      <p class="cat" style="margin-top:14px">Your name and goal are saved to your profile and used to rank products. Change them any time.</p>
+      <div class="chips" id="goals2" role="group" aria-label="Your goal"></div>
+    </div>
+    <div>
+      <h3 id="hi" style="margin-bottom:12px">Your impact</h3>
+      <div class="stats">
+        <div class="stat"><b id="sItems">0</b><span>items bought</span></div>
+        <div class="stat"><b id="sKg">0</b><span>kg CO₂ avoided (estimate)</span></div>
+        <div class="stat"><b id="sListed">0</b><span>items listed</span></div>
+        <div class="stat"><b id="sSold">0</b><span>items sold</span></div>
+      </div>
+    </div>
+    <div class="mine"><h3 style="margin-bottom:6px">My listings</h3><div id="mine"></div></div>
+  </div>
+</div></section>
+</main>
+<footer><div class="wrap">Eco-Conscious is a demo store. Eco-scores and CO₂ figures are illustrative, not audited. Pre-loved sales are between buyer and seller, who confirm payment themselves.</div></footer>
+
+<dialog id="dlg"></dialog>
+<dialog id="pay" class="pay"></dialog>
+<aside id="cart" aria-label="Cart"><div style="display:flex;justify-content:space-between;align-items:center"><h2 style="font-size:24px">Your cart</h2><button class="btn ghost" id="closeCart">Close</button></div>
+<div class="items" id="items"></div><div class="sum" id="sum"></div></aside>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* Backend ka address: server se khologe to "" (same server). File seedhi double-click se kholi to localhost:5000 */
+const API=location.protocol==="file:"?"http://localhost:5000":"";
+
+const GOALS={plastic:"Plastic-free",carbon:"Low carbon",waste:"Zero waste",fair:"Local and fair"};
+const CATS=["All","Kitchen","Personal care","Home","Fashion","Travel"];
+const PCATS=["Kitchen","Home","Fashion","Books","Electronics","Travel"];
+const COND={like:{l:"Like new",s:95},good:{l:"Good",s:90},fair:{l:"Fair",s:85}};
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const gr=s=>s>=80?"a":s>=65?"b":"c";
+const inr=n=>"₹"+Number(n).toLocaleString("en-IN");
+
+/* Har browser ka device id (login ki jagah). Server isi se user pehchanta hai. */
+let DEV="";
+try{DEV=localStorage.getItem("eco-device")||"";
+  if(!/^[A-Za-z0-9_-]{8,64}$/.test(DEV)){DEV=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():"d"+Math.random().toString(36).slice(2)+Date.now().toString(36);localStorage.setItem("eco-device",DEV)}}
+catch(e){DEV="d"+Math.random().toString(36).slice(2)+Date.now().toString(36)}
+
+async function api(path,opt={}){
+  let r;
+  try{r=await fetch(API+path,{method:opt.method||"GET",headers:{"Content-Type":"application/json","X-Device-Id":DEV},body:opt.body!==undefined?JSON.stringify(opt.body):undefined})}
+  catch(e){throw new Error("Cannot reach the server. Is the backend running?")}
+  let d={};try{d=await r.json()}catch(e){}
+  if(!r.ok)throw new Error(d.error||"Request failed ("+r.status+")");
+  return d}
+
+let S={cart:{},cat:"All",sort:"match",goal:"",name:"",items:0,kg:0,pcat:"All",q:"",order:null};
+let P=[],L=[],M=[],PHOTO="",PERR="";
+const byId=id=>P.find(x=>x.id===id);
+
+async function loadProducts(){try{const a=await api("/api/products");P=a.map(x=>({id:x.id,n:x.name,c:x.category,p:x.price,m:x.materials,k:x.packaging,o:x.carbon,e:x.emoji,g:x.goals,d:x.description,s:x.score}));PERR=""}catch(e){PERR=e.message}}
+async function loadProfile(){const u=await api("/api/profile");S.name=u.name;S.goal=u.goal;S.items=u.items;S.kg=u.kg}
+async function loadListings(){L=await api("/api/listings")}
+async function loadMine(){M=await api("/api/listings/mine")}
+async function refresh(){
+  const rs=await Promise.allSettled([loadProducts(),loadProfile(),loadListings(),loadMine()]);
+  const bad=rs.find(r=>r.status==="rejected");if(bad)toast(bad.reason.message);
+  goalChips("#goals");goalChips("#goals2");renderAll()}
+
+function ring(s,z){const C=2*Math.PI*18;return `<svg class="ring g-${gr(s)}" viewBox="0 0 44 44" width="${z}" height="${z}" role="img" aria-label="Eco-score ${s} out of 100"><circle class="trk" cx="22" cy="22" r="18"/><circle class="arc" cx="22" cy="22" r="18" stroke-dasharray="${(C*s/100).toFixed(1)} ${C.toFixed(1)}" transform="rotate(-90 22 22)"/><text x="22" y="26" text-anchor="middle">${s}</text></svg>`}
+function toast(t){const el=$("#toast");el.textContent=t;el.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove("show"),3500)}
+function goalChips(id){$(id).innerHTML=Object.entries(GOALS).map(([k,v])=>`<button class="chip" data-g="${k}" aria-pressed="${S.goal===k}">${v}</button>`).join("")}
+async function setGoal(k){S.goal=S.goal===k?"":k;goalChips("#goals");goalChips("#goals2");renderGrid();
+  try{await api("/api/profile",{method:"PUT",body:{goal:S.goal}})}catch(e){toast(e.message)}}
+
+function renderGrid(){
+  $("#cats").innerHTML=CATS.map(c=>`<button class="chip" data-c="${c}" aria-pressed="${S.cat===c}">${c}</button>`).join("");
+  if(!P.length){$("#grid").innerHTML=`<p class="empty">${esc(PERR||"Loading products...")}</p>`;return}
+  const hit=x=>S.goal&&x.g.includes(S.goal);
+  const A=P.filter(x=>S.cat==="All"||x.c===S.cat);
+  A.sort((a,b)=>S.sort==="low"?a.p-b.p:S.sort==="score"?b.s-a.s:(hit(b)-hit(a))||b.s-a.s);
+  $("#grid").innerHTML=A.map(x=>`<article class="card"><button class="ico" data-d="${x.id}" aria-label="Details for ${esc(x.n)}">${esc(x.e)}</button>
+  <div class="cat">${esc(x.c)}</div><h3>${esc(x.n)}</h3>
+  <div class="meta">${ring(x.s,44)}<span class="price">${inr(x.p)}</span></div>
+  ${hit(x)?`<div class="match">Matches: ${GOALS[S.goal]}</div>`:""}
+  <button class="btn add" data-a="${x.id}">Add to cart</button></article>`).join("");
+}
+function renderP(){
+  $("#pcats").innerHTML=["All",...PCATS].map(c=>`<button class="chip" data-pc="${c}" aria-pressed="${S.pcat===c}">${c}</button>`).join("");
+  // Normalize query and fields for case-insensitive, whitespace-tolerant search.
+  const q=S.q.toLocaleLowerCase().trim().replace(/\s+/g," ");
+  const A=L.filter(l=>{
+    const categoryOK=S.pcat==="All"||l.category===S.pcat;
+    const haystack=(l.title+" "+(l.description||"")+" "+l.category).toLocaleLowerCase().replace(/\s+/g," ");
+    return categoryOK&&(!q||haystack.includes(q));
+  });
+  const noItems=L.length===0;
+  const emptyMessage=noItems
+    ? "No pre-loved items listed yet. Be the first to add one in the Sell section."
+    : "No items match your search or selected category. Try another keyword or choose All.";
+  $("#pgrid").innerHTML=A.length?A.map(l=>{const cd=COND[l.cond]||COND.good,own=M.some(m=>m.id===l.id);
+    return `<article class="card"><div class="pic">${l.hasPhoto?`<img class="pimg" src="${API}/api/listings/${encodeURIComponent(l.id)}/photo" alt="${esc(l.title)}" loading="lazy">`:"📦"}</div>
+    <div class="cat">${esc(l.category)}</div><span class="badge">Pre-loved · ${cd.l}</span><h3>${esc(l.title)}</h3>
+    <p class="cat" style="margin:0">${esc(l.description)}</p>
+    <div class="meta">${ring(cd.s,44)}<span class="price">${inr(l.price)}</span></div>
+    <div class="cat">Sold by ${esc(l.seller)}</div>
+    <button class="btn add" data-pb="${esc(l.id)}">${own?"Your listing":"Buy now"}</button></article>`}).join(""): ` <p class="empty">${esc(emptyMessage)}</p>`;
+}
+function renderMine(){
+  $("#sListed").textContent=M.length;$("#sSold").textContent=M.filter(l=>l.status==="sold").length;
+  const lab={live:"Live",reserved:"Buyer says paid",sold:"Sold"};
+  $("#mine").innerHTML=M.length?M.map(l=>{const id=esc(l.id);
+    const btns=l.status==="live"?`<button class="btn ghost sm" data-ms="${id}">Mark sold</button><button class="btn ghost sm" data-rm="${id}">Remove</button>`
+      :l.status==="reserved"?`<button class="btn sm" data-ms="${id}">Money received</button><button class="btn ghost sm" data-rl="${id}">Not received</button>`
+      :`<button class="btn ghost sm" data-rm="${id}">Remove</button>`;
+    return `<div class="mrow"><div><b>${esc(l.title)}</b> · ${inr(l.price)} <span class="st">${lab[l.status]||esc(l.status)}</span></div><div style="display:flex;gap:6px">${btns}</div></div>`}).join(""):'<p class="cat">You have not listed anything yet.</p>';
+}
+function renderProfile(){
+  if(document.activeElement!==$("#name"))$("#name").value=S.name;
+  if(!$("#ls").value)$("#ls").value=S.name;
+  $("#sItems").textContent=S.items;$("#sKg").textContent=Number(S.kg).toFixed(1);
+  $("#hi").textContent=S.name?`${S.name}’s impact`:"Your impact"}
+function renderAll(){renderGrid();renderP();renderMine();renderProfile();renderCart()}
+
+function detail(id){const x=byId(id);if(!x)return;const row=(l,v)=>`<div class="bar-row">${l}<div class="track"><div class="fill" style="width:${v}%"></div></div>${v}</div>`;
+  $("#dlg").innerHTML=`<div style="display:flex;gap:14px;align-items:center">${ring(x.s,64)}<div><h3 style="font-size:22px">${esc(x.n)}</h3><div class="cat">${esc(x.c)} · ${inr(x.p)}</div></div></div>
+  <p>${esc(x.d)}</p><div class="bars">${row("Materials",x.m)}${row("Packaging",x.k)}${row("Carbon",x.o)}</div>
+  <div class="chips" style="margin:14px 0">${x.g.map(g=>`<span class="chip">${GOALS[g]||esc(g)}</span>`).join("")||'<span class="cat">No sustainability tags yet</span>'}</div>
+  <div style="display:flex;gap:8px"><button class="btn" data-a="${x.id}" data-close="1">Add to cart</button><button class="btn ghost" data-close="1">Close</button></div>`;
+  $("#dlg").showModal()}
+function add(id,d=1){S.cart[id]=(S.cart[id]||0)+d;if(S.cart[id]<=0)delete S.cart[id];if(S.cart[id]>20)S.cart[id]=20;renderCart()}
+function renderCart(){
+  const ids=Object.keys(S.cart).map(Number).filter(i=>byId(i));
+  const n=ids.reduce((a,i)=>a+S.cart[i],0);$("#cc").textContent=n;
+  if(!ids.length){$("#items").innerHTML='<p class="cat">Your cart is empty. Add a product to see its eco impact here.</p>';$("#sum").innerHTML="";return}
+  let html="",tot=0,sc=0,kg=0;
+  ids.forEach(i=>{const x=byId(i),q=S.cart[i];tot+=x.p*q;sc+=x.s*q;kg+=Math.max(0,(x.s-50)/100*1.2)*q;
+    html+=`<div class="line"><span class="e">${esc(x.e)}</span><div>${esc(x.n)}<br><span class="cat">${inr(x.p)} · score ${x.s}</span></div><div class="qty"><button data-q="${i}" data-d="-1" aria-label="Remove one">−</button> ${q} <button data-q="${i}" data-d="1" aria-label="Add one">+</button></div></div>`;
+    const alt=P.filter(y=>y.c===x.c&&y.s>=x.s+8&&!S.cart[y.id]).sort((a,b)=>b.s-a.s)[0];
+    if(alt)html+=`<div class="swap"><span>Greener pick: <b>${esc(alt.n)}</b> (score ${alt.s})</span><button class="btn ghost" data-sw="${i}:${alt.id}">Swap</button></div>`});
+  $("#items").innerHTML=html;
+  $("#sum").innerHTML=`<div>Average eco-score: <b>${Math.round(sc/n)}</b></div><div>Est. CO₂ avoided: <b>${kg.toFixed(1)} kg</b></div><div style="font-weight:600;font-size:18px;margin:6px 0 10px">Total ${inr(tot)}</div><button class="btn" id="buy">Pay now</button>`}
+
+/* ====== PAYMENT: server order banata hai aur QR deta hai ====== */
+async function startPay(orderId){
+  const q=await api("/api/payment/qr/"+encodeURIComponent(orderId));
+  S.order={id:q.orderId,am:q.amount,kind:q.kind};
+  $("#cart").classList.remove("open");
+  $("#pay").innerHTML=`<h3 style="font-size:24px">Pay ${esc(q.payee)}</h3>
+  <div class="amt">${inr(q.amount)}</div>
+  <div class="qrbox"><img src="${esc(q.qr)}" width="210" height="210" alt="UPI payment QR code"></div>
+  <p class="cat">Open GPay, PhonePe or Paytm and scan this code. The amount fills in automatically.</p>
+  <div class="row"><a class="btn upi-open" href="${esc(q.link)}">Pay in UPI app</a><button class="btn" id="payDone">I’ve paid</button><button class="btn ghost" id="payCancel">Cancel</button></div>`;
+  $("#pay").showModal()}
+async function checkoutStore(btn){
+  const items=Object.entries(S.cart).map(([id,qty])=>({id:+id,qty}));if(!items.length)return;
+  btn.disabled=true;
+  try{const o=await api("/api/orders",{method:"POST",body:{items}});await startPay(o.orderId)}
+  catch(e){toast(e.message)}finally{btn.disabled=false}}
+async function buyPreloved(id){
+  if(M.some(m=>m.id===id))return toast("This is your own listing");
+  try{const o=await api("/api/listings/"+encodeURIComponent(id)+"/buy",{method:"POST"});await startPay(o.orderId)}
+  catch(e){toast(e.message);loadListings().then(renderP).catch(()=>{})}}
+async function finishOrder(btn){
+  const o=S.order;if(!o)return;btn.disabled=true;
+  try{const r=await api("/api/payment/"+encodeURIComponent(o.id)+"/confirm",{method:"POST"});
+    if(o.kind==="store")S.cart={};
+    S.order=null;
+    $("#pay").innerHTML=`<div class="ok">✅</div><h3 style="font-size:26px;margin:6px 0">Order placed</h3>
+    <p>Order ID <b>${esc(r.orderId)}</b><br>${inr(r.total)} paid.${o.kind==="listing"?" The seller will confirm once the money reaches them.":" Thanks for choosing greener."}</p>
+    <button class="btn" id="payClose">Continue shopping</button>`;
+    await refresh()}
+  catch(e){toast(e.message);btn.disabled=false;if(/Someone else/.test(e.message)){$("#pay").close();refresh()}}}
+
+/* ====== SELL FORM ====== */
+$("#lc").innerHTML=PCATS.map(c=>`<option>${c}</option>`).join("");
+$("#photo").onchange=e=>{
+  const f=e.target.files[0];PHOTO="";$("#prev").hidden=true;if(!f)return;
+  const url=URL.createObjectURL(f),img=new Image();
+  img.onload=()=>{const m=480,r=Math.min(1,m/Math.max(img.width,img.height));
+    const c=document.createElement("canvas");c.width=Math.round(img.width*r);c.height=Math.round(img.height*r);
+    c.getContext("2d").drawImage(img,0,0,c.width,c.height);
+    PHOTO=c.toDataURL("image/jpeg",.7);$("#prev").src=PHOTO;$("#prev").hidden=false;URL.revokeObjectURL(url)};
+  img.onerror=()=>{toast("Could not read this image");URL.revokeObjectURL(url)};
+  img.src=url};
+$("#sellForm").onsubmit=async e=>{
+  e.preventDefault();const form=e.target,f=form.elements,btn=form.querySelector("button[type=submit]");
+  const upi=f.lu.value.trim(),price=Math.round(+f.lp.value);
+  if(f.lt.value.trim().length<3)return toast("Please enter what you are selling");
+  if(!(price>=1&&price<=100000))return toast("Price must be between ₹1 and ₹1,00,000");
+  if(!f.ls.value.trim())return toast("Please enter your name");
+  if(!/^[\w.\-]{2,}@[A-Za-z]{2,}$/.test(upi))return toast("Enter a valid UPI ID, like name@upi");
+  if(!f.lok.checked)return toast("Please tick the confirmation box");
+  btn.disabled=true;
+  try{await api("/api/listings",{method:"POST",body:{title:f.lt.value.trim(),category:f.lc.value,cond:f.lcond.value,price,description:f.ld.value.trim(),seller:f.ls.value.trim(),upi,photo:PHOTO||undefined,confirm:true}});
+    form.reset();PHOTO="";$("#prev").hidden=true;$("#ls").value=S.name;
+    await Promise.all([loadListings(),loadMine()]);renderP();renderMine();
+    toast("Your item is listed");location.hash="#preloved"}
+  catch(err){toast(err.message)}finally{btn.disabled=false}};
+
+async function listingAction(fn,msg){try{await fn();await Promise.all([loadListings(),loadMine()]);renderP();renderMine();if(msg)toast(msg)}catch(e){toast(e.message)}}
+
+document.addEventListener("click",e=>{
+  const t=e.target.closest("button");if(!t)return;const D=t.dataset;
+  if(D.g)setGoal(D.g);
+  else if(D.c){S.cat=D.c;renderGrid()}
+  else if(D.pc){S.pcat=D.pc;renderP()}
+  else if(D.a){add(+D.a);toast("Added to cart")}
+  else if(D.d&&!D.q)detail(+D.d);
+  else if(D.q)add(+D.q,+D.d);
+  else if(D.sw){const[a,b]=D.sw.split(":").map(Number);const q=S.cart[a];delete S.cart[a];S.cart[b]=q;renderCart();toast("Swapped for a greener pick")}
+  else if(D.pb)buyPreloved(D.pb);
+  else if(D.ms)listingAction(()=>api("/api/listings/"+encodeURIComponent(D.ms),{method:"PATCH",body:{status:"sold"}}),"Marked as sold");
+  else if(D.rl)listingAction(()=>api("/api/listings/"+encodeURIComponent(D.rl),{method:"PATCH",body:{status:"live"}}),"Listed again");
+  else if(D.rm)listingAction(()=>api("/api/listings/"+encodeURIComponent(D.rm),{method:"DELETE"}),"Listing removed");
+  if(D.close)$("#dlg").close();
+  if(t.id==="cartBtn")$("#cart").classList.add("open");
+  if(t.id==="closeCart")$("#cart").classList.remove("open");
+  if(t.id==="buy")checkoutStore(t);
+  if(t.id==="payDone")finishOrder(t);
+  if(t.id==="payCancel"||t.id==="payClose")$("#pay").close();
+});
+$("#sort").onchange=e=>{S.sort=e.target.value;renderGrid()};
+$("#q").oninput=e=>{S.q=e.target.value.trim();renderP()};
+let nameTimer;
+$("#name").oninput=e=>{S.name=e.target.value.trim();$("#hi").textContent=S.name?`${S.name}’s impact`:"Your impact";
+  clearTimeout(nameTimer);nameTimer=setTimeout(()=>api("/api/profile",{method:"PUT",body:{name:S.name}}).catch(()=>{}),600)};
+$("#dlg").addEventListener("click",e=>{if(e.target===$("#dlg"))$("#dlg").close()});
+goalChips("#goals");goalChips("#goals2");renderAll();refresh();
+</script>
+</body>
+</html>
