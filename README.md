@@ -1,6 +1,6 @@
 # Eco-Friendly Shopping 
 
-This project is a demo eco-friendly shop with a pre-loved marketplace. The updated files improve the marketplace listing search and the empty-state message.
+This project is a demo eco-friendly shop with a pre-loved marketplace. The files improve the marketplace listing search and the empty-state message.
 
 ## Requirements
 - Node.js 18 or newer (Node 20 LTS recommended)
