@@ -1,37 +1,140 @@
-# Eco-Friendly Shopping 
+# Eco-Friendly Shopping
 
-This project is a demo eco-friendly shop with a pre-loved marketplace. The files improve the marketplace listing search and the empty-state message.
+An eco-friendly e-commerce demo application featuring a pre-loved marketplace where users can explore sustainable products and buy or sell second-hand items.
 
-## Requirements
-- Node.js 18 or newer (Node 20 LTS recommended)
-- npm
+## Prerequisites
 
-## Run locally
-1. Extract this ZIP.
-2. Open a terminal in `backend`.
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
-4. Copy `.env.example` to `.env` and edit `UPI_ID` with your payment UPI ID if you intend to test payment QR generation. Do not use a real payment flow for production without payment verification.
-5. Start the server:
-   ```bash
-   npm run dev
-   ```
-   or `npm start`.
-6. Open `http://localhost:5000` in your browser.
+Ensure the following tools are installed before running the project:
 
+- **Node.js:** Version 18 or later (Node.js 20 LTS recommended)
+- **npm:** Node Package Manager
 
-## Pre-loved marketplace search
-- Search text is matched case-insensitively across listing title, description and category in the frontend.
-- Category chips can be combined with text search.
-- The backend public endpoint also supports `q` and `cat` query parameters, e.g.:
-  - `http://localhost:5000/api/listings?q=lamp`
-  - `http://localhost:5000/api/listings?cat=Home`
-  - `http://localhost:5000/api/listings?cat=Home&q=lamp`
-- The marketplace starts empty in a fresh database. Create a listing through **Sell your pre-loved items** to test browse/search. Store products are seeded on first run.
+## Getting Started
 
-## Notes
-- SQLite data is created locally in `backend/data/eco.db` at first startup. This ZIP intentionally excludes the database and its WAL files, so it won't include personal demo data or stale DB state.
-- This is a demonstration application. The UPI confirmation button is a user self-report, not server-side payment verification. Integrate a payment gateway before accepting real payments.
-- `better-sqlite3` is a native dependency. Install it with `npm install` on your computer instead of copying the bundled `node_modules` from another operating system.
+Follow these steps to set up and run the application locally.
+
+### 1. Extract the Project
+
+Extract the ZIP file and open the project directory in your terminal.
+
+### 2. Navigate to the Backend
+
+```bash
+cd backend
+```
+
+### 3. Install Dependencies
+
+Install the required backend packages:
+
+```bash
+npm install
+```
+
+### 4. Configure Environment Variables
+
+Copy the example environment file:
+
+```bash
+copy .env.example .env
+```
+
+Open the `.env` file and configure the `UPI_ID` variable if you want to test payment QR code generation.
+
+**Note:** The application is intended for demonstration purposes. Do not use real payment flows in production without proper payment gateway integration and server-side payment verification.
+
+### 5. Start the Backend Server
+
+Run the development server:
+
+```bash
+npm run dev
+```
+
+Alternatively, use:
+
+```bash
+npm start
+```
+
+### 6. Access the Application
+
+Once the server starts successfully, open the following URL in your browser:
+
+```text
+http://localhost:5000
+```
+
+## Key Features
+
+- **Eco-Friendly Shopping:** Browse a collection of sustainable products.
+- **Pre-Loved Marketplace:** Create and explore second-hand product listings.
+- **Smart Search:** Search marketplace listings by title, description, and category.
+- **Category Filtering:** Filter listings using category-based selection.
+- **Combined Search and Filters:** Apply text search and category filters simultaneously.
+- **Payment QR Generation:** Generate UPI payment QR codes for demonstration purposes.
+
+## Pre-Loved Marketplace Search
+
+The marketplace supports flexible searching and category-based filtering.
+
+### Frontend Functionality
+
+- Search is case-insensitive.
+- Listings are matched against their title, description, and category.
+- Category filters can be combined with text-based search.
+
+### Backend API Support
+
+The public listings endpoint supports the following query parameters:
+
+| Endpoint | Description |
+|---|---|
+| `/api/listings?q=lamp` | Search listings by keyword |
+| `/api/listings?cat=Home` | Filter listings by category |
+| `/api/listings?cat=Home&q=lamp` | Combine keyword search and category filtering |
+
+**Example:**
+
+```text
+http://localhost:5000/api/listings?q=lamp
+```
+
+### Testing the Marketplace
+
+A fresh database does not contain any pre-loved marketplace listings.
+
+To test the marketplace functionality:
+
+1. Open the application.
+2. Navigate to **Sell Your Pre-Loved Items**.
+3. Create a new listing.
+4. Visit the marketplace to browse, search, and filter listings.
+
+Store products are automatically seeded when the database is initialized for the first time.
+
+## Database
+
+The application uses **SQLite** for local data storage.
+
+- The database is automatically created on the first server startup.
+- Database location: `backend/data/eco.db`
+- Marketplace listings and other application data are stored locally.
+- The ZIP distribution excludes the database and its associated WAL files to prevent previously stored demo data from being included.
+
+## Technical Notes
+
+- **Database:** SQLite
+- **Native Dependency:** `better-sqlite3`
+- Install native dependencies locally using `npm install`.
+- Avoid copying the existing `node_modules` directory from another operating system, as native dependencies may not be compatible.
+
+## Important Disclaimer
+
+This project is developed for demonstration and educational purposes.
+
+The UPI payment confirmation feature relies on user self-reporting and does not independently verify transactions. For production use, integrate a trusted payment gateway with server-side payment verification.
+
+---
+
+**Eco-Friendly Shopping — Promoting sustainable consumption through responsible shopping and reuse.**
